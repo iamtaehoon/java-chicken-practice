@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.Arrays;
 
 public class Table {

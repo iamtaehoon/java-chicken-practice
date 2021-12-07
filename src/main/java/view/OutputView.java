@@ -1,9 +1,13 @@
 package view;
 
 import domain.Menu;
+import domain.OrderCnt;
+import domain.Orders;
 import domain.Table;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
@@ -37,4 +41,16 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void showBills(LinkedHashMap<Menu, OrderCnt> orders) {
+        System.out.println("## 메뉴 수량 금액");
+        orders.forEach((menu, menuCnt) -> System.out.println(
+                menu.getName() + " " + menuCnt + " " + menu.getPrice() * menuCnt.getMenuCnt()));
+    }
+
+    public static void payTotalMoney(AtomicInteger totalMoney) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.println(totalMoney+"원");
+    }
+
 }

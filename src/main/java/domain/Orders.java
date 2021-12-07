@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -17,21 +19,14 @@ public class Orders { //주문서
     }
 
     public void showBills() {
-        System.out.println("## 메뉴 수량 금액");
-        orders.forEach((menu, menuCnt) -> System.out.println(
-                menu.getName() + " " + menuCnt + " " + menu.getPrice() * menuCnt.getMenuCnt()));
+        OutputView.showBills(orders);
     }
 
     public void payTotalMoney() {
-        showTotalMoney();
-        orders.clear();
-    }
-
-    private void showTotalMoney() {
-        System.out.println("## 최종 결제할 금액");
         AtomicInteger totalMoney = new AtomicInteger();
         orders.forEach((menu, menuCnt) -> totalMoney.addAndGet(menu.getPrice() * menuCnt.getMenuCnt()));
-        System.out.println(totalMoney+"원");
+        OutputView.payTotalMoney(totalMoney);
+        orders.clear();
     }
 }
 
