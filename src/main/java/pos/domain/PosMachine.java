@@ -1,5 +1,6 @@
 package pos.domain;
 
+import pos.InputValidator;
 import pos.view.InputView;
 import pos.view.OutputView;
 
@@ -7,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PosMachine {
-
     public void start() {
         try {
             MainFunctionCode mainFunctionCode = inputMainFunctionCode();
@@ -16,12 +16,10 @@ public class PosMachine {
             System.out.println(e.getMessage());
             start();
         }
-
     }
 
     private MainFunctionCode inputMainFunctionCode() {
-        int inputCode = InputView.inputFunction();
-        InputView.removeBlank();
+        int inputCode = InputValidator.validateNumber(InputView.inputFunctionCode());
         return Arrays.stream(MainFunctionCode.values())
                 .filter(code -> code.getCode() == inputCode)
                 .findAny().orElse(null);
@@ -62,8 +60,7 @@ public class PosMachine {
     private Table determineTables() {
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
-        final int tableNumber = InputView.inputTableNumber();
-        InputView.removeBlank();
+        int tableNumber = InputValidator.validateNumber(InputView.inputTableNumber());
         return TableRepository.tables().get(tableNumber);
     }
 }
