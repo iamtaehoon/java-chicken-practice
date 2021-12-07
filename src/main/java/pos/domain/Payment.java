@@ -4,26 +4,32 @@ import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Payment {
-
     public static int calculatePaymentAmount(LinkedHashMap<Menu, OrderCnt> orders, PayType payType) {
-        AtomicInteger sumMoney = new AtomicInteger();
         int discountMoney = 0;
-        int totalMoney = 0;
+        int totalMoney = calculateTotalMoney(orders);
 
-        orders.forEach((menu, menuCnt) -> sumMoney.addAndGet((menu.getPrice() * menuCnt.getMenuCnt())));
-        totalMoney = sumMoney.get();
         discountMoney += discountChickenCnt(orders);
         totalMoney -= discountMoney;
 
         if (payType == PayType.CASH) {
             discountMoney += discountCash(totalMoney);
-            totalMoney -= discountMoney;
         }
-        return discountMoney;
+        totalMoney -= discountMoney;
+
+        return totalMoney;
+    }
+
+    private static int calculateTotalMoney(LinkedHashMap<Menu, OrderCnt> orders) {
+        int totalMoney = 0;
+        for (Menu menu : orders.keySet()) {
+            OrderCnt orderCnt = orders.get(menu);
+            totalMoney += (menu.getPrice() * orderCnt.getMenuCnt());
+        }
+        return totalMoney;
     }
 
     private static int discountCash(int totalMoney) {
-        return totalMoney * 95 / 100;
+        return totalMoney * 5 / 100;
     }
 
     private static int discountChickenCnt(LinkedHashMap<Menu, OrderCnt> orders) {

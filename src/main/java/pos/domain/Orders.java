@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 
 public class Orders { //주문서
     private LinkedHashMap<Menu, OrderCnt> orders = new LinkedHashMap<>();
-    int paymentMoney;
 
     public void record(Menu menu, OrderCnt orderCnt) {
         if (orders.containsKey(menu)) {
@@ -23,7 +22,7 @@ public class Orders { //주문서
     }
 
     public void payTotalMoney(PayType payType) {
-        paymentMoney += Payment.calculatePaymentAmount(orders, payType);
+        int paymentMoney = Payment.calculatePaymentAmount(orders, payType);
         OutputView.payTotalMoney(paymentMoney);
         orders.clear();
     }
