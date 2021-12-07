@@ -23,7 +23,7 @@ public class Table {
             .filter(eachMenu -> eachMenu.getNumber() == Integer.parseInt(menuInput))
             .findAny()
             .orElse(null);
-        MenuCnt orderCnt = new MenuCnt(Integer.parseInt(orderCntInput)); //
+        OrderCnt orderCnt = new OrderCnt(Integer.parseInt(orderCntInput)); //
         orders.record(menu, orderCnt);
     }
 

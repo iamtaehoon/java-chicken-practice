@@ -1,7 +1,5 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,7 @@ class OrdersTest {
 		//given
 		Orders order = new Orders();
 		Menu menu = Menu.FRIED;
-		MenuCnt orderCnt = new MenuCnt(10);
+		OrderCnt orderCnt = new OrderCnt(10);
 
 		order.record(menu, orderCnt);
 	}
@@ -23,9 +21,9 @@ class OrdersTest {
 	void 메뉴_추가주문_개수_초과_정상() {
 		Orders order = new Orders();
 		Menu menu = Menu.SEASONED;
-		MenuCnt orderCnt = new MenuCnt(70);
+		OrderCnt orderCnt = new OrderCnt(70);
 		order.record(menu, orderCnt);
-		MenuCnt additionalOrderCnt = new MenuCnt(20);
+		OrderCnt additionalOrderCnt = new OrderCnt(20);
 
 		order.record(menu, additionalOrderCnt);
 	}
@@ -35,9 +33,9 @@ class OrdersTest {
 	void 메뉴_추가주문_개수_초과_오류() {
 		Orders order = new Orders();
 		Menu menu = Menu.FRIED;
-		MenuCnt orderCnt = new MenuCnt(90);
+		OrderCnt orderCnt = new OrderCnt(90);
 		order.record(menu, orderCnt);
-		MenuCnt additionalOrderCnt = new MenuCnt(20);
+		OrderCnt additionalOrderCnt = new OrderCnt(20);
 
 		Assertions.assertThatThrownBy(() -> order.record(menu, additionalOrderCnt))
 			.isInstanceOf(IllegalArgumentException.class)

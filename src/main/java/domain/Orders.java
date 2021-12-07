@@ -4,12 +4,12 @@ import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Orders { //주문서
-	private LinkedHashMap<Menu, MenuCnt> orders = new LinkedHashMap<>();
+	private LinkedHashMap<Menu, OrderCnt> orders = new LinkedHashMap<>();
 
-	public void record(Menu menu, MenuCnt orderCnt) {
+	public void record(Menu menu, OrderCnt orderCnt) {
 		if (orders.containsKey(menu)) {
-			MenuCnt existingCnt = orders.get(menu);
-			MenuCnt totalCnt = MenuCnt.add(existingCnt, orderCnt);
+			OrderCnt existingCnt = orders.get(menu);
+			OrderCnt totalCnt = OrderCnt.add(existingCnt, orderCnt);
 			orders.put(menu, totalCnt);
 			return;
 		}
