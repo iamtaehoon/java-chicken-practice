@@ -19,7 +19,7 @@ public class Orders { //주문서
 	public void showBills() {
 		System.out.println("## 메뉴 수량 금액");
 		orders.forEach((menu, menuCnt) -> System.out.println(
-			menu.getName() + " " + menuCnt.getMenuCnt() + " " + menu.getPrice() * menuCnt.getMenuCnt()));
+			menu.getName() + " " + menuCnt + " " + menu.getPrice() * menuCnt.getMenuCnt()));
 	}
 
 	public void payTotalMoney() {

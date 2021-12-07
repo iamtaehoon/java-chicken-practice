@@ -16,4 +16,9 @@ public class OrderCnt {
 	public int getMenuCnt() {
 		return menuCnt;
 	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(menuCnt);
+	}
 }
