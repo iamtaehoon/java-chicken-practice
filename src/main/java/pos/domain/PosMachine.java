@@ -27,7 +27,7 @@ public class PosMachine {
                 .findAny().orElseThrow(() -> new IllegalArgumentException("해당 기능은 존재하지 않습니다."));
     }
 
-    private void executeFunction(MainCode mainCode) { //TODO : 이게 최선일까?
+    private void executeFunction(MainCode mainCode) {
         if (mainCode == MainCode.REGISTER) {
             register();
         } else if (mainCode == MainCode.PAY) {
@@ -40,7 +40,6 @@ public class PosMachine {
 
     private void pay() {
         Table table = determineTables();
-        //결제타입 물어보고 정함.
         table.pay();
     }
 

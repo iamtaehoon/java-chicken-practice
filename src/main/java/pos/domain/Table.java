@@ -34,7 +34,6 @@ public class Table {
         return payType;
     }
     public void takeOrder(String menuInput, String orderCntInput) {
-        //TODO 메뉴와 주문개수를 검증하는 로직 나중에 분리
         Menu menu = Arrays.stream(Menu.values())
                 .filter(eachMenu -> eachMenu.getNumber() == InputValidator.validateNumber(menuInput))
                 .findAny()

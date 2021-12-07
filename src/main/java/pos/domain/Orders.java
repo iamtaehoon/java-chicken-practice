@@ -4,7 +4,7 @@ import pos.view.OutputView;
 
 import java.util.LinkedHashMap;
 
-public class Orders { //주문서
+public class Orders {
     private LinkedHashMap<Menu, OrderCnt> orders = new LinkedHashMap<>();
 
     public void record(Menu menu, OrderCnt orderCnt) {
