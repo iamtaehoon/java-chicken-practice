@@ -4,6 +4,7 @@ import domain.TableRepository;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -14,7 +15,7 @@ public class Application {
 
         final int tableNumber = InputView.inputTableNumber();
 
-        final List<Menu> menus = MenuRepository.menus();
+        final List<Menu> menus = Arrays.asList(Menu.values().clone());
         OutputView.printMenus(menus);
     }
 }
