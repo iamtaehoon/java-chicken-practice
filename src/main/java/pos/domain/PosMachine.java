@@ -50,9 +50,14 @@ public class PosMachine {
     }
 
     private void orderMenu(Table table) {
-        final String menuType = InputView.inputMenuType();
-        final String orderCnt = InputView.inputOrderCnt();
-        table.takeOrder(menuType, orderCnt);
+        try {
+            final String menuType = InputView.inputMenuType();
+            final String orderCnt = InputView.inputOrderCnt();
+            table.takeOrder(menuType, orderCnt);
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+            orderMenu(table);
+        }
     }
 
     private Table determineTables() {

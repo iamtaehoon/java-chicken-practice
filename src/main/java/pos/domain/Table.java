@@ -27,9 +27,9 @@ public class Table {
     public void takeOrder(String menuInput, String orderCntInput) {
         //TODO 메뉴와 주문개수를 검증하는 로직 나중에 분리
         Menu menu = Arrays.stream(Menu.values())
-            .filter(eachMenu -> eachMenu.getNumber() == Integer.parseInt(menuInput))
-            .findAny()
-            .orElse(null);
+                .filter(eachMenu -> eachMenu.getNumber() == Integer.parseInt(menuInput))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("해당 메뉴는 존재하지 않습니다."));
         OrderCnt orderCnt = new OrderCnt(Integer.parseInt(orderCntInput)); //
         orders.record(menu, orderCnt);
     }
