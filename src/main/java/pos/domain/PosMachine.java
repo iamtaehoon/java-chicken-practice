@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PosMachine {
+    private Table table;
+
     public void start() {
         try {
             MainCode mainCode = inputMainCode();
@@ -61,17 +63,16 @@ public class PosMachine {
     }
 
     private Table determineTables() {
-        Table chooseTable = null; // 이게 안전한게 맞을까?
         try {
             final List<Table> tables = TableRepository.tables();
             OutputView.printTables(tables);
             int tableNumber = InputValidator.validateNumber(InputView.inputTableNumber());
-            chooseTable = TableRepository.tables().stream().filter(table -> table.getNumber() == tableNumber).findAny()
+            table = TableRepository.tables().stream().filter(table -> table.getNumber() == tableNumber).findAny()
                     .orElseThrow(() -> new IllegalArgumentException("해당 테이블 번호는 존재하지 않습니다."));
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
             determineTables();
         }
-        return chooseTable;
+        return table;
     }
 }
