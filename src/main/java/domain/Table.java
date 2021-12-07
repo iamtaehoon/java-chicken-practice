@@ -13,8 +13,6 @@ public class Table {
     public void pay() {
         orders.showBills();
         orders.payTotalMoney();
-        // 목록들의 개수와 금액을 곱한걸 보여준다.
-        // orders를 clear 한다.
     }
 
     public void takeOrder(String menuInput, String orderCntInput) {
