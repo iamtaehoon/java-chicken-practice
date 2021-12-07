@@ -7,23 +7,53 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PosMachine {
-    MainFunctionCode mainFunctionCode;
+
     public void start() {
-        mainFunctionCode = Arrays.stream(MainFunctionCode.values())
-                .filter(code -> code.getCode() == InputView.inputFunction())
-                .findFirst().orElse(null);
+        MainFunctionCode mainFunctionCode = inputMainFunctionCode();
+        executeFunction(mainFunctionCode);
+    }
 
-        final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
+    private MainFunctionCode inputMainFunctionCode() {
+        int inputCode = InputView.inputFunction();
+        return Arrays.stream(MainFunctionCode.values())
+                .filter(code -> code.getCode() == inputCode)
+                .findAny().orElse(null);
+    }
 
-        final int tableNumber = InputView.inputTableNumber();
+    private void executeFunction(MainFunctionCode mainFunctionCode) { //TODO : 이게 최선일까?
+        if (mainFunctionCode == MainFunctionCode.REGISTER) {
+            register();
+        } else if (mainFunctionCode == MainFunctionCode.PAY) {
+            pay();
+        } else if (mainFunctionCode == MainFunctionCode.END) {
+            return;
+        }
+        start();
+    }
 
+    private void pay() {
+        Table table = determineTables();
+        //결제타입 물어보고 정함.
+        table.pay();
+    }
+
+    private void register() {
+        Table table = determineTables();
         final List<Menu> menus = Arrays.asList(Menu.values().clone());
         OutputView.printMenus(menus);
+        orderMenu(table);
+    }
 
+    private void orderMenu(Table table) {
         final String menuType = InputView.inputMenuType();
         final String orderCnt = InputView.inputOrderCnt();
-        final Table table = TableRepository.tables().get(tableNumber);
         table.takeOrder(menuType, orderCnt);
+    }
+
+    private Table determineTables() {
+        final List<Table> tables = TableRepository.tables();
+        OutputView.printTables(tables);
+        final int tableNumber = InputView.inputTableNumber();
+        return TableRepository.tables().get(tableNumber);
     }
 }
