@@ -1,6 +1,7 @@
 package pos.domain;
 
 import pos.view.InputView;
+import pos.view.OutputView;
 
 import java.util.Arrays;
 
@@ -14,6 +15,7 @@ public class Table {
 
     public void pay() {
         orders.showBills();
+        OutputView.printBeforePayment(number);
         PayType payType = askPayType();
         orders.payTotalMoney();
     }

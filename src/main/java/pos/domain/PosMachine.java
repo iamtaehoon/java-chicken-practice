@@ -15,6 +15,7 @@ public class PosMachine {
 
     private MainFunctionCode inputMainFunctionCode() {
         int inputCode = InputView.inputFunction();
+        InputView.removeBlank();
         return Arrays.stream(MainFunctionCode.values())
                 .filter(code -> code.getCode() == inputCode)
                 .findAny().orElse(null);
@@ -54,6 +55,7 @@ public class PosMachine {
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
         final int tableNumber = InputView.inputTableNumber();
+        InputView.removeBlank();
         return TableRepository.tables().get(tableNumber);
     }
 }

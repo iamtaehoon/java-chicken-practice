@@ -25,13 +25,16 @@ public class InputView {
     }
 
     public static String inputMenuType() {
-        scanner.nextLine(); // 공백 없애려고.
         System.out.println("## 등록할 메뉴를 선택하세요.");
         return scanner.nextLine();
     }
 
     public static String inputPayType() {
         System.out.println("## 신용 카드는 1번, 현금은 2번");
+        return scanner.nextLine();
+    }
+
+    public static String removeBlank() {
         return scanner.nextLine();
     }
 }
