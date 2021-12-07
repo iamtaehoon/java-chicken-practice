@@ -13,6 +13,6 @@ public class Orders { //주문서
 			return;
 		}
 		orders.put(menu, orderCnt);
-		}
 	}
 }
+
