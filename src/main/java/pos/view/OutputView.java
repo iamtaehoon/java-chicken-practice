@@ -54,4 +54,13 @@ public class OutputView {
     public static void printBeforePayment(int tableNum) {
         System.out.println(tableNum + "번 테이블의 결제를 진행합니다.");
     }
+
+    public static void showErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void hasNotTable() {
+        System.out.println("해당 테이블은 존재하지 않습니다.");
+
+    }
 }

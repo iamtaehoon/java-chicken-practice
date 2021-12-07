@@ -13,7 +13,7 @@ public class PosMachine {
             MainCode mainCode = inputMainCode();
             executeFunction(mainCode);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.showErrorMessage(e);
             start();
         }
     }
@@ -22,7 +22,7 @@ public class PosMachine {
         int inputCode = InputValidator.validateNumber(InputView.inputFunctionCode());
         return Arrays.stream(MainCode.values())
                 .filter(code -> code.getCode() == inputCode)
-                .findAny().orElse(null);
+                .findAny().orElseThrow(() -> new IllegalArgumentException("해당 기능은 존재하지 않습니다."));
     }
 
     private void executeFunction(MainCode mainCode) { //TODO : 이게 최선일까?
@@ -32,8 +32,6 @@ public class PosMachine {
             pay();
         } else if (mainCode == MainCode.END) {
             return;
-        } else {
-            throw new IllegalArgumentException("해당 기능은 존재하지 않습니다.");
         }
         start();
     }
@@ -58,9 +56,17 @@ public class PosMachine {
     }
 
     private Table determineTables() {
-        final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
-        int tableNumber = InputValidator.validateNumber(InputView.inputTableNumber());
-        return TableRepository.tables().get(tableNumber);
+        Table chooseTable = null; // 이게 안전한게 맞을까?
+        try {
+            final List<Table> tables = TableRepository.tables();
+            OutputView.printTables(tables);
+            int tableNumber = InputValidator.validateNumber(InputView.inputTableNumber());
+            chooseTable = TableRepository.tables().stream().filter(table -> table.getNumber() == tableNumber).findAny()
+                    .orElseThrow(() -> new IllegalArgumentException("해당 테이블 번호는 존재하지 않습니다."));
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+            determineTables();
+        }
+        return chooseTable;
     }
 }
