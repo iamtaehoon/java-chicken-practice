@@ -18,6 +18,16 @@ class TableTest { //테이블 단위로 주문이 들어가는 걸 테스트해�
 		table5.takeOrder("21", "4");
 		table1.takeOrder("21", "4");
 		table1.pay();
+		table5.pay();
 	}
 
+	@Test
+	@DisplayName("계산되고 나서 테이블의 bills가 초기화되었는가 확인한다.")
+	void 계산이후_빌즈_초기화() {
+		Table table1 = new Table(1);
+		table1.takeOrder("1", "2");
+		table1.takeOrder("21", "4");
+		table1.pay();
+		table1.pay();
+	}
 }

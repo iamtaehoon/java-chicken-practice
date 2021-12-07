@@ -2,8 +2,6 @@ package domain;
 
 import java.util.Arrays;
 
-import sun.invoke.empty.Empty;
-
 public class Table {
     private final int number;
     private Orders orders = new Orders();
@@ -13,8 +11,8 @@ public class Table {
     }
 
     public void pay() {
-        // orders의 메서드를 사용해 한개한개 목록들을 보여준다.
         orders.showBills();
+        orders.payTotalMoney();
         // 목록들의 개수와 금액을 곱한걸 보여준다.
         // orders를 clear 한다.
     }
