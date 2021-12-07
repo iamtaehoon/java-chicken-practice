@@ -17,7 +17,7 @@ public class Table {
         orders.showBills();
         OutputView.printBeforePayment(number);
         PayType payType = askPayType();
-        orders.payTotalMoney();
+        orders.payTotalMoney(payType);
     }
 
     private PayType askPayType() {

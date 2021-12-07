@@ -47,7 +47,7 @@ public class OutputView {
                 menu.getName() + " " + menuCnt + " " + menu.getPrice() * menuCnt.getMenuCnt()));
     }
 
-    public static void payTotalMoney(AtomicInteger totalMoney) {
+    public static void payTotalMoney(int totalMoney) {
         System.out.println("## 최종 결제할 금액");
         System.out.println(totalMoney+"원");
     }

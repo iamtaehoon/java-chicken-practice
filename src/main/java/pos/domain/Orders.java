@@ -7,6 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Orders { //주문서
     private LinkedHashMap<Menu, OrderCnt> orders = new LinkedHashMap<>();
+    int totalMoney;
+    int paymentMoney;
 
     public void record(Menu menu, OrderCnt orderCnt) {
         if (orders.containsKey(menu)) {
@@ -22,10 +24,9 @@ public class Orders { //주문서
         OutputView.showBills(orders);
     }
 
-    public void payTotalMoney() {
-        AtomicInteger totalMoney = new AtomicInteger();
-        orders.forEach((menu, menuCnt) -> totalMoney.addAndGet(menu.getPrice() * menuCnt.getMenuCnt()));
-        OutputView.payTotalMoney(totalMoney);
+    public void payTotalMoney(PayType payType) {
+        paymentMoney += Payment.calculatePaymentAmount(orders, payType);
+        OutputView.payTotalMoney(paymentMoney);
         orders.clear();
     }
 }
