@@ -30,4 +30,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String inputPayType() {
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+        return scanner.nextLine();
+    }
 }

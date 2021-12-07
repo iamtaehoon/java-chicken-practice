@@ -1,5 +1,7 @@
 package pos.domain;
 
+import pos.view.InputView;
+
 import java.util.Arrays;
 
 public class Table {
@@ -12,9 +14,14 @@ public class Table {
 
     public void pay() {
         orders.showBills();
+        PayType payType = askPayType();
         orders.payTotalMoney();
     }
 
+    private PayType askPayType() {
+        int inputPayType = Integer.parseInt(InputView.inputPayType());
+        return Arrays.stream(PayType.values()).filter(payType -> payType.getPayType() == inputPayType).findAny().orElse(null);
+    }
     public void takeOrder(String menuInput, String orderCntInput) {
         //TODO 메뉴와 주문개수를 검증하는 로직 나중에 분리
         Menu menu = Arrays.stream(Menu.values())
