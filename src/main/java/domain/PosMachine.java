@@ -7,8 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PosMachine {
+    MainFunctionCode mainFunctionCode;
     public void start() {
-        InputView.inputFunction();
+        mainFunctionCode = new MainFunctionCode(InputView.inputFunction());
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
 
