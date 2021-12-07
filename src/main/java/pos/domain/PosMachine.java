@@ -10,27 +10,27 @@ import java.util.List;
 public class PosMachine {
     public void start() {
         try {
-            MainFunctionCode mainFunctionCode = inputMainFunctionCode();
-            executeFunction(mainFunctionCode);
+            MainCode mainCode = inputMainCode();
+            executeFunction(mainCode);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             start();
         }
     }
 
-    private MainFunctionCode inputMainFunctionCode() {
+    private MainCode inputMainCode() {
         int inputCode = InputValidator.validateNumber(InputView.inputFunctionCode());
-        return Arrays.stream(MainFunctionCode.values())
+        return Arrays.stream(MainCode.values())
                 .filter(code -> code.getCode() == inputCode)
                 .findAny().orElse(null);
     }
 
-    private void executeFunction(MainFunctionCode mainFunctionCode) { //TODO : 이게 최선일까?
-        if (mainFunctionCode == MainFunctionCode.REGISTER) {
+    private void executeFunction(MainCode mainCode) { //TODO : 이게 최선일까?
+        if (mainCode == MainCode.REGISTER) {
             register();
-        } else if (mainFunctionCode == MainFunctionCode.PAY) {
+        } else if (mainCode == MainCode.PAY) {
             pay();
-        } else if (mainFunctionCode == MainFunctionCode.END) {
+        } else if (mainCode == MainCode.END) {
             return;
         } else {
             throw new IllegalArgumentException("해당 기능은 존재하지 않습니다.");

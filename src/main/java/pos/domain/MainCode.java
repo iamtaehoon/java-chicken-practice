@@ -1,6 +1,6 @@
 package pos.domain;
 
-public enum MainFunctionCode {
+public enum MainCode {
     REGISTER(1,"주문등록"),
     PAY(2,"결제하기"),
     END(3, "프로그램 종료"),;
@@ -8,7 +8,7 @@ public enum MainFunctionCode {
     private int code;
     private String message;
 
-    MainFunctionCode(int code, String message) {
+    MainCode(int code, String message) {
         this.code = code;
         this.message = message;
     }
