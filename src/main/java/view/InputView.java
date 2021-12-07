@@ -10,11 +10,12 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static String inputFunction() {
+    public static int inputFunction() {
         System.out.println("## 메인화면");
         System.out.println("1 - 주문등록");
         System.out.println("2 - 결제하기");
         System.out.println("3 - 프로그램 종료");
-        return scanner.nextLine();
+        System.out.println("\n## 원하는 기능을 선택하세요.");
+        return scanner.nextInt();
     }
 }

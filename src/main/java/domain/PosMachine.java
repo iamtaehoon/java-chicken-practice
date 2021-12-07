@@ -9,7 +9,10 @@ import java.util.List;
 public class PosMachine {
     MainFunctionCode mainFunctionCode;
     public void start() {
-        mainFunctionCode = new MainFunctionCode(InputView.inputFunction());
+        mainFunctionCode = Arrays.stream(MainFunctionCode.values())
+                .filter(code -> code.getCode() == InputView.inputFunction())
+                .findFirst().orElse(null);
+
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
 
