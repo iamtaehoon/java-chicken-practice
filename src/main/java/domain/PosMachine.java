@@ -21,5 +21,7 @@ public class PosMachine {
         final List<Menu> menus = Arrays.asList(Menu.values().clone());
         OutputView.printMenus(menus);
 
+        final Menu menuType = InputView.inputMenuType();
+        final int orderCnt = InputView.inputOrderCnt();
     }
 }
