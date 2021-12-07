@@ -3,11 +3,9 @@ package pos.domain;
 import pos.view.OutputView;
 
 import java.util.LinkedHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Orders { //주문서
     private LinkedHashMap<Menu, OrderCnt> orders = new LinkedHashMap<>();
-    int totalMoney;
     int paymentMoney;
 
     public void record(Menu menu, OrderCnt orderCnt) {

@@ -6,7 +6,6 @@ import pos.domain.Table;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
