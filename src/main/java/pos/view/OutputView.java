@@ -52,7 +52,7 @@ public class OutputView {
         System.out.println(totalMoney+"원");
     }
 
-    public static void printBeforePayment(int number) {
-        System.out.println(number + "번 테이블의 결제를 진행합니다.");
+    public static void printBeforePayment(int tableNum) {
+        System.out.println(tableNum + "번 테이블의 결제를 진행합니다.");
     }
 }

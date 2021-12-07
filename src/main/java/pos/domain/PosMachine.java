@@ -9,8 +9,14 @@ import java.util.List;
 public class PosMachine {
 
     public void start() {
-        MainFunctionCode mainFunctionCode = inputMainFunctionCode();
-        executeFunction(mainFunctionCode);
+        try {
+            MainFunctionCode mainFunctionCode = inputMainFunctionCode();
+            executeFunction(mainFunctionCode);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            start();
+        }
+
     }
 
     private MainFunctionCode inputMainFunctionCode() {
@@ -28,6 +34,8 @@ public class PosMachine {
             pay();
         } else if (mainFunctionCode == MainFunctionCode.END) {
             return;
+        } else {
+            throw new IllegalArgumentException("해당 기능은 존재하지 않습니다.");
         }
         start();
     }
