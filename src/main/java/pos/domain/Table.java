@@ -1,6 +1,4 @@
-package domain;
-
-import view.OutputView;
+package pos.domain;
 
 import java.util.Arrays;
 

@@ -1,9 +1,5 @@
-package view;
+package pos.view;
 
-import domain.Menu;
-import domain.OrderCnt;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {

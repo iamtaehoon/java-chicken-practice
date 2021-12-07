@@ -1,4 +1,4 @@
-package domain;
+package pos.domain;
 
 public enum MainFunctionCode {
     REGISTER(1,"주문등록"),

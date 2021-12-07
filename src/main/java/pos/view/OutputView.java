@@ -1,9 +1,8 @@
-package view;
+package pos.view;
 
-import domain.Menu;
-import domain.OrderCnt;
-import domain.Orders;
-import domain.Table;
+import pos.domain.Menu;
+import pos.domain.OrderCnt;
+import pos.domain.Table;
 
 import java.util.LinkedHashMap;
 import java.util.List;

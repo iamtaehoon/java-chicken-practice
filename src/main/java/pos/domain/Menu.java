@@ -1,4 +1,4 @@
-package domain;
+package pos.domain;
 
 public enum Menu {
     FRIED(1, "후라이드", Category.CHICKEN, 16_000),

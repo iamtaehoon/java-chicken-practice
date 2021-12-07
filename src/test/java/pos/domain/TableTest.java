@@ -1,6 +1,4 @@
-package domain;
-
-import static org.junit.jupiter.api.Assertions.*;
+package pos.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

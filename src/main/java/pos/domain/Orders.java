@@ -1,6 +1,6 @@
-package domain;
+package pos.domain;
 
-import view.OutputView;
+import pos.view.OutputView;
 
 import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;

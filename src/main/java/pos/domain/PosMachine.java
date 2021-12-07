@@ -1,7 +1,7 @@
-package domain;
+package pos.domain;
 
-import view.InputView;
-import view.OutputView;
+import pos.view.InputView;
+import pos.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;

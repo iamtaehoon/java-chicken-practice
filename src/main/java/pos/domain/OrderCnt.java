@@ -1,9 +1,12 @@
-package domain;
+package pos.domain;
+
+import static pos.Constant.MAX_ORDER_CNT;
+import static pos.Constant.MIN_ORDER_CNT;
 
 public class OrderCnt {
     private int menuCnt;
     public OrderCnt(int menuCnt) {
-        if (menuCnt < 0 || menuCnt > 99) {
+        if (menuCnt < MIN_ORDER_CNT || menuCnt > MAX_ORDER_CNT) {
             throw new IllegalArgumentException("해당 개수만큼 주문할 수 없습니다.");
         }
         this.menuCnt = menuCnt;
