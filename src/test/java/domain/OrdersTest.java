@@ -17,9 +17,30 @@ class OrdersTest {
 
 		order.record(menu, orderCnt);
 	}
-	//없는 메뉴 -> 오류
-	// 개수 99개 초과 -> 오류
-	// 있는 메뉴, 기존에 있던 개수 + 추가로 주문 이상없음
-	// 있는 메뉴, 기존에 있던거 + 추가 주문, 99개 초과 -> 오류
 
+	@Test
+	@DisplayName("기존 개수에서 추가로 주문이 들어왔을 때 개수 제한을 안넘기면 정상 로직이 돌아간다.")
+	void 메뉴_추가주문_개수_초과_정상() {
+		Orders order = new Orders();
+		Menu menu = Menu.SEASONED;
+		MenuCnt orderCnt = new MenuCnt(70);
+		order.record(menu, orderCnt);
+		MenuCnt additionalOrderCnt = new MenuCnt(20);
+
+		order.record(menu, additionalOrderCnt);
+	}
+
+	@Test
+	@DisplayName("기존 개수에서 추가로 주문이 들어왔을 때 개수 제한을 넘기면 오류를 발생시킨다.")
+	void 메뉴_추가주문_개수_초과_오류() {
+		Orders order = new Orders();
+		Menu menu = Menu.FRIED;
+		MenuCnt orderCnt = new MenuCnt(90);
+		order.record(menu, orderCnt);
+		MenuCnt additionalOrderCnt = new MenuCnt(20);
+
+		Assertions.assertThatThrownBy(() -> order.record(menu, additionalOrderCnt))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("해당 개수만큼 주문할 수 없습니다.");
+	}
 }
