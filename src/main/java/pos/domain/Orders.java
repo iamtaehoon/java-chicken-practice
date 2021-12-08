@@ -29,22 +29,11 @@ public class Orders {
     }
 
     public int calculateTotalMoney() {
-        int totalMoney = 0;
-        for (Menu menu : orders.keySet()) {
-            OrderCnt orderCnt = orders.get(menu);
-            totalMoney += (menu.getPrice() * orderCnt.getMenuCnt());
-        }
-        return totalMoney;
+        return orders.keySet().stream().mapToInt(key -> key.getPrice() * orders.get(key).getMenuCnt()).sum();
     }
 
-    public int discountChickenCnt() {
-        AtomicInteger totalChickenCnt = new AtomicInteger();
-        orders.forEach((menu, orderCnt) -> {
-            if (menu.getCategory() == Category.CHICKEN) {
-                totalChickenCnt.addAndGet(orderCnt.getMenuCnt());
-            }
-        });
-        return (totalChickenCnt.get() / 10) * 10000;
+    public int getChickenCnt() {
+        return orders.keySet().stream().filter(menu -> menu.getCategory() == Category.CHICKEN).mapToInt(menu -> orders.get(menu).getMenuCnt()).sum();
     }
 }
 
